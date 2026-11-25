@@ -5,12 +5,14 @@ homepage: https://appcheap.io
 repository: https://github.com/AppCheap/awesome_bottom_bar
 
 environment:
-  sdk: ">=2.15.1 <4.0.0"
-  flutter: ">=1.17.0"
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_ui: ^1.1.7
+  material_ui: ^1.11.1
 
 dev_dependencies:
   flutter_test:

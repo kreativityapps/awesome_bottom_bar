@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 
 class Creative extends StatefulWidget {
@@ -25,9 +25,9 @@ class _CreativeState extends State<Creative> {
     return Scaffold(
       bottomNavigationBar: BottomBarCreative(
         items: widget.items,
-        backgroundColor: Colors.green.withOpacity(0.21),
-        color:const Color(0XFF7AC0FF),
-        colorSelected:const Color(0XFF0686F8),
+        backgroundColor: Colors.green.withValues(alpha: 0.21),
+        color: const Color(0XFF7AC0FF),
+        colorSelected: const Color(0XFF0686F8),
         indexSelected: visit,
         highlightStyle: widget.highlightStyle,
         isFloating: widget.isFloating ?? false,

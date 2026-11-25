@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 abstract class BottomBar extends StatefulWidget {
   final List<TabItem> itemData;
@@ -58,8 +58,7 @@ abstract class BottomBar extends StatefulWidget {
     CountStyle? countStyle,
   });
 
-  @protected
-  Widget buildLayout(
+  Widget _buildLayout(
     BuildContext context, {
     required List<TabItem> itemData,
     required Color background,
@@ -78,7 +77,7 @@ abstract class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
-    return widget.buildLayout(
+    return widget._buildLayout(
       context,
       itemData: widget.itemData,
       background: widget.background,

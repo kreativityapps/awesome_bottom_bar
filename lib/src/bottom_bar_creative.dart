@@ -1,6 +1,6 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:awesome_bottom_bar/extension/shadow.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../widgets/build_icon.dart';
 import '../widgets/hexagon/hexagon.dart';
@@ -60,8 +60,8 @@ class BottomBarCreative extends StatefulWidget {
     this.pad = 4,
     this.enableShadow = true,
   }) : super(
-          key: key,
-        );
+    key: key,
+  );
 
   @override
   _BottomBarCreativeState createState() => _BottomBarCreativeState();
@@ -70,22 +70,30 @@ class BottomBarCreative extends StatefulWidget {
 class _BottomBarCreativeState extends State<BottomBarCreative> {
   @override
   Widget build(BuildContext context) {
-    int defaultVisit = widget.items.length / 2 == 0 ? 0 : (widget.items.length / 2).ceil() - 1;
+    int defaultVisit =
+    widget.items.length / 2 == 0 ? 0 : (widget.items.length / 2).ceil() - 1;
     int visit = widget.visitHighlight ?? defaultVisit;
 
-    double bottom = MediaQuery.of(context).viewPadding.bottom;
+    double bottom = MediaQuery
+        .of(context)
+        .viewPadding
+        .bottom;
     EdgeInsets padDefault = EdgeInsets.only(
       top: widget.top!,
       bottom: widget.bottom! > 2 ? widget.bottom! + bottom : bottom,
     );
 
-    EdgeInsetsGeometry pad = widget.paddingVertical != null ? const EdgeInsets.symmetric(vertical: 12.0) : padDefault;
+    EdgeInsetsGeometry pad = widget.paddingVertical != null
+        ? const EdgeInsets.symmetric(vertical: 12.0)
+        : padDefault;
 
     double sizeHighlight = widget.highlightStyle?.sizeLarge == true ? 56 : 48;
 
     isShadow = widget.enableShadow!;
 
-    EdgeInsetsGeometry padTop = widget.isFloating ? EdgeInsets.only(top: sizeHighlight/2) : EdgeInsets.zero;
+    EdgeInsetsGeometry padTop = widget.isFloating
+        ? EdgeInsets.only(top: sizeHighlight / 2)
+        : EdgeInsets.zero;
 
     return Stack(
       children: [
@@ -112,27 +120,31 @@ class _BottomBarCreativeState extends State<BottomBarCreative> {
                 if (visit == index) {
                   Widget highlightWidget = GestureDetector(
                     key: Key(value),
-                    onTap: index != widget.indexSelected ? () => widget.onTap?.call(visit) : null,
-                    child: buildHighLight(context, item: item, color: widget.colorSelected, size: sizeHighlight),
+                    onTap: index != widget.indexSelected
+                        ? () => widget.onTap?.call(visit)
+                        : null,
+                    child: buildHighLight(context,
+                        item: item,
+                        color: widget.colorSelected,
+                        size: sizeHighlight),
                   );
                   return !widget.isFloating
                       ? Container(
-                          padding: pad,
-                          alignment: Alignment.center,
-                          child: highlightWidget
-                        )
+                      padding: pad,
+                      alignment: Alignment.center,
+                      child: highlightWidget)
                       : Column(
-                        children: [
-                          highlightWidget
-                        ],
-                      );
+                    children: [highlightWidget],
+                  );
                 }
                 return Expanded(
                   child: Padding(
                     padding: padTop,
                     child: InkWell(
                       key: ValueKey(value),
-                      onTap: index != widget.indexSelected ? () => widget.onTap?.call(index) : null,
+                      onTap: index != widget.indexSelected
+                          ? () => widget.onTap?.call(index)
+                          : null,
                       child: widget.items.length > index
                           ? buildItem(
                         context,
@@ -147,13 +159,13 @@ class _BottomBarCreativeState extends State<BottomBarCreative> {
               }),
             ),
           )
-        else Container(),
+        else
+          Container(),
       ],
     );
   }
 
-  Widget buildItem(
-    BuildContext context, {
+  Widget buildItem(BuildContext context, {
     required TabItem item,
     bool isSelected = false,
     required Color color,
@@ -162,7 +174,10 @@ class _BottomBarCreativeState extends State<BottomBarCreative> {
     double? paddingVer,
     CountStyle? countStyle,
   }) {
-    double bottom = MediaQuery.of(context).viewPadding.bottom;
+    double bottom = MediaQuery
+        .of(context)
+        .viewPadding
+        .bottom;
 
     EdgeInsets padDefault = EdgeInsets.only(
       top: widget.top!,
@@ -171,32 +186,49 @@ class _BottomBarCreativeState extends State<BottomBarCreative> {
     Color itemColor = isSelected ? widget.colorSelected : color;
 
     return Container(
-      padding: paddingVer != null ? EdgeInsets.symmetric(vertical: paddingVer) : padDefault,
+      padding: paddingVer != null
+          ? EdgeInsets.symmetric(vertical: paddingVer)
+          : padDefault,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BuildIcon(
-            item: item,
-            iconColor: itemColor,
-            iconSize: widget.iconSize,
-            countStyle: countStyle,
+          Expanded(
+            child: BuildIcon(
+              item: item,
+              iconColor: itemColor,
+              iconSize: widget.iconSize,
+              countStyle: countStyle,
+            ),
           ),
           if (item.title is String && item.title != '') ...[
             SizedBox(height: widget.pad),
-            Text(
-              item.title!,
-              style: Theme.of(context).textTheme.labelSmall?.merge(widget.titleStyle).copyWith(color: itemColor),
-              textAlign: TextAlign.center,
-            )
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  item.title ?? '',
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+                  maxLines: 1,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .labelSmall
+                      ?.merge(widget.titleStyle)
+                      .copyWith(color: itemColor),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
           ],
         ],
       ),
     );
   }
 
-  Widget buildHighLight(
-    BuildContext context, {
+  Widget buildHighLight(BuildContext context, {
     required TabItem item,
     required Color color,
     double size = 48,
@@ -223,7 +255,8 @@ class _BottomBarCreativeState extends State<BottomBarCreative> {
       margin: EdgeInsets.zero,
       elevation: widget.highlightStyle?.elevation ?? 0,
       color: background,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(size / 2)),
+      shape:
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(size / 2)),
       child: Container(
         height: size,
         width: size,

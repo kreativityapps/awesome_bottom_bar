@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 
 class Fancy extends StatefulWidget {
   final List<TabItem> items;
   final StyleIconFooter? style;
 
-  const Fancy({Key? key, required this.items, this.style}):super(key: key);
+  const Fancy({Key? key, required this.items, this.style}) : super(key: key);
 
   @override
   _FancyState createState() => _FancyState();
@@ -25,7 +25,7 @@ class _FancyState extends State<Fancy> {
           SizedBox(height: height),
           BottomBarInspiredFancy(
             items: widget.items,
-            backgroundColor: Colors.green.withOpacity(0.21),
+            backgroundColor: Colors.green.withValues(alpha: 0.21),
             color: color,
             colorSelected: colorSelected,
             indexSelected: visit,
@@ -42,7 +42,7 @@ class _FancyState extends State<Fancy> {
       ),
       bottomNavigationBar: BottomBarInspiredFancy(
         items: widget.items,
-        backgroundColor: Colors.green.withOpacity(0.21),
+        backgroundColor: Colors.green.withValues(alpha: 0.21),
         color: color,
         colorSelected: colorSelected,
         indexSelected: visit,

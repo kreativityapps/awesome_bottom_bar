@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 
 class Floating extends StatefulWidget {

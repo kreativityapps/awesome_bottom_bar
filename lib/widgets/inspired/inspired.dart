@@ -21,7 +21,7 @@ import 'package:awesome_bottom_bar/widgets/build_icon.dart';
 import 'package:awesome_bottom_bar/widgets/hexagon/hexagon.dart';
 
 import '../../chip_style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 import 'stack.dart' as extend;
 import 'painter.dart';

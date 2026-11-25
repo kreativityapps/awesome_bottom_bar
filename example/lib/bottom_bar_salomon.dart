@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 
 class Salomon extends StatefulWidget {
@@ -41,7 +41,7 @@ class _SalomonState extends State<Salomon> {
       bottomNavigationBar: BottomBarSalomon(
         items: widget.items,
         color: Colors.blue,
-        backgroundColor: Colors.red.withOpacity(0.4),
+        backgroundColor: Colors.red.withValues(alpha: 0.4),
         colorSelected: Colors.white,
         backgroundSelected: Colors.blue,
         indexSelected: visit,

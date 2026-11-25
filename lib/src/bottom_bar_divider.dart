@@ -1,7 +1,7 @@
 import 'dart:ui' show lerpDouble;
 
 import 'package:awesome_bottom_bar/extension/shadow.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../count_style.dart';
 import '../tab_item.dart';
